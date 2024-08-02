@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PDF Utils
+
+This project provides utilities for merging and splitting PDF files. It's built with Next.js version 14.
+
+## Functionality
+
+This project offers the following features:
+
+- **Merge PDFs:** Combine multiple PDF files into a single document.
+- **Split PDFs:** Divide a PDF file into multiple smaller files.
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/your-username/pdf-utils.git
+   ```
 
+2. **Navigate to the project directory:**
+```bash
+cd pdf-utils
+```
+3. **Install dependencies:**
+```bash
+npm install
+```
+4. **Start the development server:**
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
+5. **Access the application:**
+Open http://localhost:3000 in your web browser.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Usage
+The application will provide a user interface for uploading PDF files and performing merge or split operations.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Development
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This project uses Next.js version 14. You can find more information about Next.js in the official documentation:
 
-## Learn More
+- [**Next.js Documentation:** ](https://nextjs.org/docs) 
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
+Contributions are welcome! Please feel free to open issues or submit pull requests.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License.

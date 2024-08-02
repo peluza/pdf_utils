@@ -1,11 +1,19 @@
-"use client"
-import useCurrentSection from '@/hooks/Conan/useCurrentSection';
+'use client'
+
+import useCurrentSection from '@/hooks/CurrentSection/useCurrentSection';
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
 export default function ContainComponents() {
-  const [currentSection, setCurrentSection] = useCurrentSection();
+  const { setCurrentSection } = useCurrentSection();
 
+  const handleSplit = () => {
+    setCurrentSection('split');
+  };
+
+  const handleMerge = () => {
+    setCurrentSection('merge');
+  };
 
   return (
     <div className="container mt-5">
@@ -17,7 +25,7 @@ export default function ContainComponents() {
               <Card.Text>
                 Combine multiple PDF files into one.
               </Card.Text>
-              <Button variant="primary" onClick={setCurrentSection.bind('merge')}>Merge</Button>
+              <Button variant="primary" onClick={handleMerge}>Merge</Button>
             </Card.Body>
           </Card>
         </div>
@@ -28,7 +36,7 @@ export default function ContainComponents() {
               <Card.Text>
                 Divide a PDF file into multiple files.
               </Card.Text>
-              <Button variant="primary" onClick={setCurrentSection.bind('split')}>Split</Button>
+              <Button variant="primary" onClick={handleSplit}>Split</Button>
             </Card.Body>
           </Card>
         </div>

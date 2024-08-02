@@ -1,24 +1,25 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import ContainComponents from '../Contain/ContainComponents';
 import SplitComponents from '../Split/SplitComponents';
-import useCurrentSection from '@/hooks/Conan/useCurrentSection';
+import MergeComponents from '../Merge/MergeComnponent';
+import useCurrentSection from '@/hooks/CurrentSection/useCurrentSection';
 
+export default function WelcomeComponents() {
+  const { currentSection } = useCurrentSection();
 
-export default function WelcomeCoponents() {
-  // Use the hook to get the currentSection and its setter
-  const [currentSection, setCurrentSection] = useCurrentSection();
-  console.log(currentSection);
-
-  let componentToShow;
-  if (currentSection === 'home') {
-    componentToShow = <ContainComponents />;
-  } else if (currentSection === 'split') {
-    componentToShow = <SplitComponents />;
-  } else {
-    componentToShow = null; // Or handle the case where the section is invalid
-  }
-
+  const renderComponent = () => {
+    switch(currentSection) {
+      case 'split':
+        return <SplitComponents />;
+      case 'merge':
+        return <MergeComponents />;
+      case 'home':
+      default:
+        return <ContainComponents />;
+    }
+  };
+  
   return (
     <div className="welcome-section mt-5">
       <div className="container">
@@ -27,7 +28,7 @@ export default function WelcomeCoponents() {
           Aquí podrás realizar diversas operaciones con tus archivos PDF.
         </p>
       </div>
-      {componentToShow} 
+      {renderComponent()}
     </div>
   );
 }
