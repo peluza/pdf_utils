@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
-import axios from 'axios';
 
 export default function SplitComponents() {
   const [splitFiles, setSplitFiles] = useState([]);
@@ -18,20 +17,25 @@ export default function SplitComponents() {
       if (selectedFile.type === 'application/pdf') {
         try {
           const formData = new FormData();
-          formData.append('pdfFile', selectedFile);
+          formData.append('pdf_file', selectedFile);
 
-          const response = await axios.post('http://localhost/api/split', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
+          const response = await fetch('http://localhost:3002/split-pdf/', { 
+            method: 'POST',
+            body: formData,
           });
 
-          setSplitFiles(response.data.splitFiles);
+          if (response.ok) {
+            const zipBlob = await response.blob();
+            const zipUrl = URL.createObjectURL(zipBlob);
+            setSplitFiles([zipUrl]); 
+          } else {
+            console.error('Error splitting PDF:', response.statusText);
+          }
         } catch (error) {
           console.error('Error splitting PDF:', error);
         }
       } else {
-        // Handle invalid file type
+        console.error('Invalid file type. Please select a PDF file.');
       }
     } else {
       console.log('Please select a PDF file.');
@@ -52,14 +56,14 @@ export default function SplitComponents() {
           Split
         </Button>
       </Form>
-      {/* Display split files (if any) */}
+
       {splitFiles.length > 0 && (
         <div>
           <h3>Split Files:</h3>
           <ul>
-            {splitFiles.map((file, index) => (
+            {splitFiles.map((fileUrl, index) => (
               <li key={index}>
-                <a href={URL.createObjectURL(file)} download={`split-file-${index + 1}.pdf`}>
+                <a href={fileUrl} download={`split-file-${index + 1}.zip`}>
                   Download File {index + 1}
                 </a>
               </li>
