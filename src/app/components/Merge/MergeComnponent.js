@@ -21,7 +21,7 @@ export default function MergeComponents() {
           formData.append('pdf_files', file); 
         });
 
-        const response = await fetch('http://127.0.0.1:3002/merge-pdf/', {
+        const response = await fetch(`http://${process.env.NEXT_PUBLIC_IP_API}:${process.env.NEXT_PUBLIC_PORT_API}/merge-pdf/`, {
           method: 'POST',
           body: formData,
         });

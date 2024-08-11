@@ -19,7 +19,7 @@ export default function SplitComponents() {
           const formData = new FormData();
           formData.append('pdf_file', selectedFile);
 
-          const response = await fetch('http://localhost:3002/split-pdf/', { 
+          const response = await fetch(`http://${process.env.NEXT_PUBLIC_IP_API}:${process.env.NEXT_PUBLIC_PORT_API}/split-pdf/`, { 
             method: 'POST',
             body: formData,
           });
